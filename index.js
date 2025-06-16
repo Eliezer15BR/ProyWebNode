@@ -111,6 +111,74 @@ const server = http.createServer((req, res) => {
 server.listen(3000, ()=>{
     console.log('Servidor corriendo en http://localhost:3000/');
 });
+
+const css=function(){
+    const css=`
+    :root{
+        --colorMenu:rgb(3, 33, 34);
+        --colorContenido:rgb(1, 1, 85);
+        --colorFooter:black;
+        --colorMenuHover:rgb(212, 255, 255);
+        --espacioMenu:250px;
+    }
+
+    body{
+        display: grid;
+        grid-template-columns: 2fr 8fr;
+        grid-template-rows: 1fr 8fr auto;
+        grid-template-areas: "header header"
+                                "main main"
+                                "footer footer";
+        height: 100vh;
+    }
+    header{
+        grid-area: header;
+        margin-left: var(--espacioMenu);
+    }
+    footer{
+        grid-area: footer;
+        margin-left: var(--espacioMenu);
+    }
+    header,
+    footer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background-color: var(--colorFooter);
+        min-height: 5em;
+    }
+    nav{
+        position: fixed;
+        height: 100vh;
+        width: var(--espacioMenu);
+        display: flex;
+        flex-direction: column;
+        background: var(--colorMenu);
+    }
+    nav a{
+        display: flex;
+        align-items: center;
+        flex: 1;
+        padding: 25px;
+        background-color: var(--colorMenu);
+        color:rgb(132, 255, 255);
+        text-decoration: none;
+        font-size: 20px;
+    }
+    nav a:hover{
+        background-color: var(--colorMenuHover);
+        transition: .5s;
+    }
+    main{
+        margin-left: var(--espacioMenu);
+        grid-area: main;
+        background-color: var(--colorContenido);
+        padding: 25px;
+        color: #fff;
+    }
+    `;
+}
 const bodyhtml=function(){
     let html=`<!doctype html>
 <html lang="en">
@@ -120,78 +188,7 @@ const bodyhtml=function(){
     <title>Proyecto WebIII</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
-        :root{
-    --colorMenu:rgb(3, 33, 34);
-    --colorContenido:rgb(1, 1, 85);
-    --colorFooter:black;
-    --colorMenuHover:rgb(212, 255, 255);
-    --espacioMenu:250px;
-}
-
-body{
-    display: grid;
-    grid-template-columns: 2fr 8fr;
-    grid-template-rows: 1fr 8fr auto;
-    grid-template-areas: "header header"
-                            "main main"
-                            "footer footer";
-    height: 100vh;
-}
-header{
-    grid-area: header;
-    margin-left: var(--espacioMenu);
-}
-footer{
-    grid-area: footer;
-    margin-left: var(--espacioMenu);
-}
-header,
-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: var(--colorFooter);
-    min-height: 5em;
-}
-nav{
-    position: fixed;
-    height: 100vh;
-    width: var(--espacioMenu);
-    display: flex;
-    flex-direction: column;
-    background: var(--colorMenu);
-}
-nav a{
-    display: flex;
-    align-items: center;
-    flex: 1;
-    padding: 25px;
-    background-color: var(--colorMenu);
-    color:rgb(132, 255, 255);
-    text-decoration: none;
-    font-size: 20px;
-}
-nav a:hover{
-    background-color: var(--colorMenuHover);
-    transition: .5s;
-}
-main{
-    margin-left: var(--espacioMenu);
-    grid-area: main;
-    background-color: var(--colorContenido);
-    padding: 25px;
-    color: #fff;
-}
-.error{
-    background-color: rgba(73, 16, 16, 0.61);
-    margin-top: 2px;
-    padding-left: 10px;
-    display: none;
-    color:rgb(235, 144, 144);
-    border:1px solid rgb(228, 36, 36);
-    border-radius: .4em;
-}
+      ${css()}  
     </style>
 </head>
   <body>
