@@ -18,23 +18,29 @@ const server = http.createServer((req, res) => {
                 return res.end('Error en el query');
             }
             let html = bodyhtml()+`<h1>Listado de Categorias</h1>
-            <table class="table table-dark">
-            <tr>
-                <td>Codigo de Categoria</td>
-                <td>Nombre de la Categoria</td>
-            </tr>`;
-            rows.forEach( row => {
-                html+=`<tr>
-                <td>${row.codigo_categoria}</td>
-                <td>${row.nombre_categoria}</td>
-                </tr>`;
-            });
-            html+=`</table>`
-            html+=finhtml()
-            res.writeHead(200,{
-                'Content-Type':'text/html'
-            });
-            res.end(html);
+                <table class="table table-bordered table-striped table-dark mt-2 table-hover">
+                    <thead>
+                        <tr>
+                            <th>Codigo de Categoria</th>
+                            <th>Nombre de la Categoria</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        `;
+                        rows.forEach( row => {
+                            html+=`<tr>
+                            <td>${row.codigo_categoria}</td>
+                            <td>${row.nombre_categoria}</td>
+                            </tr>`;
+                        });
+                    html+=`
+                    </tbody>
+                    </table>`
+                    html+=finhtml()
+                    res.writeHead(200,{
+                        'Content-Type':'text/html'
+                    });
+                    res.end(html);
         });
     }
     else if(req.url=='/'){
@@ -52,12 +58,15 @@ const server = http.createServer((req, res) => {
                 return res.end('Error en el query'+err);
             }
             let html=bodyhtml()+`<h1>Listado de Subcategorías</h1>
-            <table class="table table-dark">
-            <tr>
-                <td>Codigo de Subcategoria</td>
-                <td>Nombre de la Subcategoria</td>
-                <td>Nombre de la Categoria</td>
-            </tr>`;
+            <table class="table table-bordered table-striped table-dark mt-2 table-hover">
+                <thead>    
+                    <tr>
+                        <th>Codigo de Subcategoria</th>
+                        <th>Nombre de la Subcategoria</th>
+                        <th>Nombre de la Categoria</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">`;
             rows.forEach(row=>{
                 html+=`<tr>
                 <td>${row.codigo_subcategoria}</td>
@@ -65,7 +74,9 @@ const server = http.createServer((req, res) => {
                 <td>${row.nombre_categoria}</td>
                 </tr>`;
             });
-            html+=`</table>`
+            html+=`
+                </tbody>
+            </table>`
             html+=finhtml()
             res.writeHead(200,{
                 'Content-Type':'text/html'
@@ -80,13 +91,16 @@ const server = http.createServer((req, res) => {
                 return res.end('Error en el query'+err);
             }
             let html=bodyhtml()+`<h1>Listado de Subcategorías</h1>
-            <table class="table table-dark">
-            <tr>
-                <td>Codigo del Articulo</td>
-                <td>Nombre del Articulo</td>
-                <td>Nombre de la Subcategoria</td>
-                <td>Nombre de la Categoria</td>
-            </tr>`;
+            <table class="table table-bordered table-striped table-dark mt-2 table-hover">
+                <thead>
+                    <tr>
+                        <th>Codigo del Articulo</th>
+                        <th>Nombre del Articulo</th>
+                        <th>Nombre de la Subcategoria</th>
+                        <th>Nombre de la Categoria</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">`;
             rows.forEach(row=>{
                 html+=`<tr>
                 <td>${row.codigo_articulo}</td>
@@ -95,7 +109,9 @@ const server = http.createServer((req, res) => {
                 <td>${row.nombre_categoria}</td>
                 </tr>`;
             });
-            html+=`</table>`
+            html+=`
+                </tbody>
+            </table>`
             html+=finhtml()
             res.writeHead(200,{
                 'Content-Type':'text/html'
@@ -111,6 +127,8 @@ const server = http.createServer((req, res) => {
 server.listen(3000, ()=>{
     console.log('Servidor corriendo en http://localhost:3000/');
 });
+
+
 
 const css=function(){
     const css=`
@@ -180,6 +198,7 @@ const css=function(){
     `;
     return css;
 }
+
 const bodyhtml=function(){
     let html=`<!doctype html>
 <html lang="en">
