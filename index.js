@@ -178,6 +178,7 @@ const css=function(){
         color: #fff;
     }
     `;
+    return css;
 }
 const bodyhtml=function(){
     let html=`<!doctype html>
