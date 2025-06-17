@@ -133,9 +133,19 @@ server.listen(3000, ()=>{
 const css=function(){
     const css=`
     :root{
-        --colorMenu:rgb(3, 33, 34);
-        --colorContenido:rgb(1, 1, 85);
-        --colorFooter:black;
+        --colorMenu:hsl(250,80%,10%);
+        --colorContenido:linear-gradient(
+                            to bottom,
+                            hsl(230,80%,10%),
+                            hsl(230,80%,20%),
+                            hsl(230,80%,25%)
+                            );
+        --colorFooterHeader:linear-gradient(
+                            to right bottom,
+                            hsl(230,80%,8%) 50%,
+                            hsl(230,80%,5%),
+                            hsl(230,80%,1%)
+                            );;
         --colorMenuHover:rgb(212, 255, 255);
         --espacioMenu:250px;
     }
@@ -163,10 +173,11 @@ const css=function(){
         justify-content: center;
         align-items: center;
         color: white;
-        background-color: var(--colorFooter);
+        background: var(--colorFooterHeader);
         min-height: 5em;
     }
     nav{
+        padding: 1em;
         position: fixed;
         height: 100vh;
         width: var(--espacioMenu);
@@ -175,6 +186,8 @@ const css=function(){
         background: var(--colorMenu);
     }
     nav a{
+        border-radius: .2em;
+        margin: .5em 0;
         display: flex;
         align-items: center;
         flex: 1;
@@ -183,6 +196,7 @@ const css=function(){
         color:rgb(132, 255, 255);
         text-decoration: none;
         font-size: 20px;
+        max-height: 5em;
     }
     nav a:hover{
         background-color: var(--colorMenuHover);
@@ -191,10 +205,10 @@ const css=function(){
     main{
         margin-left: var(--espacioMenu);
         grid-area: main;
-        background-color: var(--colorContenido);
+        background: var(--colorContenido);
         padding: 25px;
         color: #fff;
-    }
+}
     `;
     return css;
 }
