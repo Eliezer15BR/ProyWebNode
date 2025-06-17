@@ -44,7 +44,7 @@ const server = http.createServer((req, res) => {
         });
     }
     else if(req.url=='/'){
-        let html=bodyhtml()+`Bienvenidos a la página de el CRUD de categorías, subcategorías y productos`+finhtml();
+        let html=bodyhtml()+`<h1>Bienvenidos</h1> <p> Pagina de gestion de categorias, subcategorias y articulos</p>`+finhtml();
         res.writeHead(200,{
             'Content-Type':'text/html'
         });
